@@ -17,9 +17,9 @@ class CreateOtpCodesTable extends Migration
             $table->uuid('id_otp')->primary();
             $table->uuid('id_user')->nullable();
 
-            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
 
-            $table->timestamps();
+            $table->dateTime('valid_until');
         });
     }
 

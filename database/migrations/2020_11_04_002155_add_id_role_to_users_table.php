@@ -14,7 +14,7 @@ class AddIdRoleToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->uuid('id_role');
+            $table->uuid('id_role')->nullable();
 
             $table->foreign('id_role')->references('id_role')->on('roles')->onDelete('cascade');
         });
@@ -28,6 +28,8 @@ class AddIdRoleToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['id_role']);
+            $table->dropColumn(['id_role']);
             
         });
     }
